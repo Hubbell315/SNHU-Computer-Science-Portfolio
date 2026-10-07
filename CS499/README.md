@@ -1,105 +1,97 @@
 # CS 499 | Computer Science Capstone
 
-This repository section documents the continued development and enhancement of **Travlr Getaways**, a full-stack travel management application originally developed during CS 465: Full Stack Development at Southern New Hampshire University.
+This section presents my enhancements to **Travlr Getaways**, a full-stack travel management application originally developed in CS 465 at Southern New Hampshire University.
 
-For my computer science capstone, I selected Travlr Getaways as the primary artifact and iteratively enhanced the application across software engineering, algorithms and data structures, and database design. The goal of the capstone is not simply to reproduce the original project, but to demonstrate how I approach an existing codebase, identify weaknesses, evaluate engineering trade-offs, and improve the system over multiple development iterations.
+I used the application to demonstrate software design and engineering, algorithms and data structures, and databases. Each enhancement addresses findings from my initial code review while preserving the application's existing functionality.
 
 ## Project Overview
 
-Travlr Getaways is a full-stack web application that provides a customer-facing travel website and an Angular-based administrative interface for managing trip data.
+Travlr Getaways includes a customer-facing travel website and an Angular administrative interface for managing trip packages.
 
 The application uses:
 
-- **Angular and TypeScript** for the administrative client
-- **Node.js and Express** for the REST API and server
-- **MongoDB and Mongoose** for data persistence
-- **JWT authentication** for protected administrative functionality
-- **RESTful API design** for communication between the client and backend
+- Angular and TypeScript for the administrative interface
+- Node.js and Express for the server and REST API
+- MongoDB and Mongoose for persistence and schema validation
+- JSON Web Tokens for authenticated administrative operations
+- Handlebars for server-rendered pages
 
-The original version of this application is also available in my [CS 465 Full Stack Development portfolio](../CS465).
+[Original CS 465 artifact](../CS465)
 
-## Capstone Enhancements
+## Current Enhanced Artifact
 
-### Software Design and Engineering
+[View the enhanced Travlr Getaways source code](./module-four-databases/travlr-getaways)
 
-The first enhancement focused on improving the application's structure, reliability, validation, configuration, and security.
+The current version incorporates all three capstone enhancements described below.
 
-Key improvements included:
+## Software Design and Engineering
 
-- Improved server and database configuration
-- Environment-based configuration using `dotenv`
-- More restrictive CORS configuration
-- Improved MongoDB connection handling
-- Stronger validation and normalization of trip data
-- Unique and consistently formatted trip codes
-- Improved HTTP responses and database error handling
-- Strengthened user registration and login validation
-- Corrected JWT authentication handling
-- Protected administrative create, update, and delete operations
+This enhancement improved backend maintainability, data validation, error handling, and authentication.
 
-This stage focused on making the existing application more maintainable and better suited for continued development.
+Key changes include:
 
-### Algorithms and Data Structures
+- Reusable helpers for constructing validated trip data and handling database errors
+- Required-field validation, string length limits, and consistent trip-code formatting
+- Validation during updates and responses containing the updated record
+- Restricted writable fields rather than accepting the entire request body
+- Corrected JWT verification before allowing protected requests to continue
+- Authentication requirements for administrative create, update, and delete operations
+- Environment-based database configuration and connection lifecycle handling
 
-The second enhancement introduced search, filtering, and custom sorting functionality to the trip management interface.
+Public users can browse trips, while administrative write operations require a valid token. I manually verified that an unauthenticated delete request returned HTTP 401 and left the trip data unchanged.
 
-Rather than relying entirely on built-in sorting behavior, I implemented a **custom merge sort algorithm** operating on the Angular `Trip[]` collection.
+## Algorithms and Data Structures
 
-The enhancement includes:
+This enhancement introduced resort filtering and a **custom merge sort** for the Angular `Trip[]` collection.
 
-- Resort-based trip searching and filtering
-- A custom merge sort implementation
-- Price sorting in ascending and descending order
-- Duration sorting in ascending and descending order
-- Numeric parsing of price and duration values
-- Comparator-based sorting logic
-- Preservation of the original filtered collection so multiple sorting operations can be performed without additional API requests
-- Improved loading, empty-result, and error states within the Angular interface
+Users can sort matching trips by price or duration in ascending or descending order. A separate sorting utility contains the recursive merge sort, comparator logic, and parsing of the original display strings. Invalid numeric values are placed at the end, and trip names provide a tie-breaker.
 
-Merge sort was selected because it provides predictable **O(n log n)** time complexity. The implementation requires **O(n)** auxiliary space during merging, representing a deliberate trade-off between memory usage, predictable performance, and implementation complexity.
+Merge sort provides **O(n log n)** time complexity and uses **O(n)** auxiliary space, where `n` is the number of matching trips being sorted. I selected it for predictable performance and to demonstrate algorithm implementation beyond a built-in sorting function.
 
-The API first reduces the collection according to the user's search criteria, after which the custom sorting algorithm operates on the resulting set of matching trips.
+Filtering occurs through the API before the returned collection is sorted in Angular. The original matching collection is preserved so users can change sorting options without another API request.
 
-## Engineering Approach
+I verified the enhancement by building the Angular application, running the backend with MongoDB, testing resort filtering, and checking price sorting in both directions.
 
-A major focus of this capstone is demonstrating the ability to work with an existing system rather than developing an isolated example from scratch.
+## Databases
 
-Each enhancement required evaluating the current architecture, identifying limitations, and making changes while preserving existing functionality. This included considering:
+This enhancement improved data consistency and enabled numeric filtering within MongoDB.
 
-- Application architecture and maintainability
-- Client/server responsibilities
-- API design
-- Data validation
-- Authentication and authorization
-- Algorithm selection and complexity
-- Data structures and state management
-- Error handling
-- Scalability and future system requirements
+Key changes include:
 
-The project demonstrates an iterative software engineering process in which each version builds upon lessons and design decisions from the previous implementation.
+- Integer `priceCents` and `durationDays` fields alongside the original display strings
+- A normalized `resortSearch` field for resort prefix searches
+- Mongoose validation for required fields, numeric values, and string lengths
+- A unique trip-code constraint and targeted indexes
+- A migration script with a dry-run mode for existing records
+- Validated API filters for resort, maximum price, and maximum duration
+- Live Angular searching by trip name or resort
 
-## Current Artifact
+During migration, I identified a conflict between an existing nonunique trip-code index and the new unique constraint. I checked for duplicate codes, corrected the index, and reran the migration successfully.
 
-The current enhanced version of Travlr Getaways is located here:
+I verified a combined resort, price, and duration query, confirmed that an invalid price returned HTTP 400, and tested live search in the browser. These checks demonstrate behavior with the sample data; they do not establish performance at a larger scale.
 
-[**Travlr Getaways — Algorithms and Data Structures Enhancement**](./module-three-algorithms-data-structures/travlr-getaways)
+## Engineering Decisions and Learning
+
+The enhancements required decisions about client and server responsibilities, algorithm performance, schema changes, and security.
+
+Filtering in MongoDB reduces the collection returned to the client, while client-side sorting allows users to reorder those results without repeated requests. Numeric database fields support range queries while retaining the existing display format.
+
+The project also reinforced the importance of migrating existing data when changing a schema and reviewing authentication behavior rather than assuming that a working login makes every route secure.
 
 ## Enhancement History
 
-Development is preserved through separate Git branches so that each major stage of the capstone can be reviewed independently.
+Earlier development stages were maintained on these branches:
 
-- **`cs499-enhancements`** — Software Design and Engineering enhancement
-- **`cs499-milestone-three`** — Algorithms and Data Structures enhancement
+- `cs499-enhancements` — Software Design and Engineering
+- `cs499-milestone-three` — Algorithms and Data Structures
 
-Additional enhancements will be incorporated as the capstone progresses.
+The current version on `main` includes the database enhancement and the preceding work.
 
 ## About Me
 
 I am completing a **Bachelor of Science in Computer Science with a concentration in Software Engineering** at Southern New Hampshire University.
 
-My work focuses on full-stack software engineering, backend systems, APIs, databases, cloud infrastructure, automation, and applied artificial intelligence.
+My interests include full-stack development, backend systems, APIs, databases, cloud infrastructure, automation, and applied artificial intelligence.
 
-For additional projects and professional work, visit:
-
-- [tylerhubbell.com](https://tylerhubbell.com/)
-- [GitHub Profile](https://github.com/Hubbell315)
+- [Professional portfolio](https://tylerhubbell.com/)
+- [GitHub profile](https://github.com/Hubbell315)
