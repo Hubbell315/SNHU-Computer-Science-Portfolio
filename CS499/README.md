@@ -79,7 +79,7 @@ This recording reviews the original application and explains planned enhancement
 ## Enhancement Narratives
 
 - [Software Design and Engineering narrative](./software-design-narrative.html)
-- [Algorithms and Data Structures narrative](./CS_499_Tyler_Hubbell_Milestone_3.docx)
+- [Algorithms and Data Structures narrative](./algorithms-narrative.html)
 - [Databases narrative](./CS_499_Tyler_Hubbell_Milestone_4.docx)
 
 ## Engineering Decisions and Learning
