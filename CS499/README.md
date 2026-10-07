@@ -83,7 +83,7 @@ The project also reinforced the importance of migrating existing data when chang
 Earlier development stages were maintained on these branches:
 
 - [Software Design and Engineering enhancement](https://github.com/Hubbell315/SNHU-Computer-Science-Portfolio/tree/cs499-enhancements/CS499/module-two-software-design-engineering/travlr-getaways)
-- `cs499-milestone-three` — Algorithms and Data Structures
+- [Algorithms and Data Structures enhancement](https://github.com/Hubbell315/SNHU-Computer-Science-Portfolio/tree/cs499-milestone-three/CS499/module-three-algorithms-data-structures/travlr-getaways)
 - [Databases enhancement](https://github.com/Hubbell315/SNHU-Computer-Science-Portfolio/tree/cs499-milestone-four/CS499/module-four-databases/travlr-getaways)
 
 The current version on `main` includes the database enhancement and the preceding work.
