@@ -70,6 +70,12 @@ During migration, I identified a conflict between an existing nonunique trip-cod
 
 I verified a combined resort, price, and duration query, confirmed that an invalid price returned HTTP 400, and tested live search in the browser. These checks demonstrate behavior with the sample data; they do not establish performance at a larger scale.
 
+## Code Review
+
+[Watch my Milestone One code review of Travlr Getaways](https://youtu.be/FR0y-qIE7ys)
+
+This recording reviews the original application and explains planned enhancements in software design and engineering, algorithms and data structures, and databases.
+
 ## Enhancement Narratives
 
 - [Software Design and Engineering narrative](./CS_499_Tyler_Hubbell_Milestone_Two.docx)
