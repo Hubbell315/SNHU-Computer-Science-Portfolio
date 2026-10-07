@@ -70,6 +70,12 @@ During migration, I identified a conflict between an existing nonunique trip-cod
 
 I verified a combined resort, price, and duration query, confirmed that an invalid price returned HTTP 400, and tested live search in the browser. These checks demonstrate behavior with the sample data; they do not establish performance at a larger scale.
 
+## Enhancement Narratives
+
+- [Software Design and Engineering narrative](./CS_499_Tyler_Hubbell_Milestone_Two.docx)
+- [Algorithms and Data Structures narrative](./CS_499_Tyler_Hubbell_Milestone_3.docx)
+- [Databases narrative](./CS_499_Tyler_Hubbell_Milestone_4.docx)
+
 ## Engineering Decisions and Learning
 
 The enhancements required decisions about client and server responsibilities, algorithm performance, schema changes, and security.
