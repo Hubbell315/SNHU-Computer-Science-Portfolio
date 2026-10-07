@@ -20,7 +20,7 @@ The application uses:
 
 ## Current Enhanced Artifact
 
-[View the enhanced Travlr Getaways source code](./module-four-databases/travlr-getaways)
+[View the enhanced Travlr Getaways source code](https://github.com/Hubbell315/SNHU-Computer-Science-Portfolio/tree/main/CS499/module-four-databases/travlr-getaways)
 
 The current version incorporates all three capstone enhancements described below.
 
