@@ -1,5 +1,15 @@
 # CS 499 | Computer Science Capstone
 
+## Professional Self-Assessment
+
+My professional self-assessment introduces my growth throughout the Computer Science program, my software engineering goals, and the skills demonstrated in this portfolio.
+
+[Read my Professional Self-Assessment](professional-self-assessment.html)
+
+[Download the Word document](CS_499_Tyler_Hubbell_Professional_Self_Assessment.docx)
+
+---
+
 This section presents my enhancements to **Travlr Getaways**, a full-stack travel management application originally developed in CS 465 at Southern New Hampshire University.
 
 I used the application to demonstrate software design and engineering, algorithms and data structures, and databases. Each enhancement addresses findings from my initial code review while preserving the application's existing functionality.
