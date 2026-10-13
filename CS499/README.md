@@ -4,7 +4,7 @@
 
 My professional self-assessment introduces my growth throughout the Computer Science program, my software engineering goals, and the skills demonstrated in this portfolio.
 
-[Read my Professional Self-Assessment](professional-self-assessment.html)
+[Read my Professional Self-Assessment](professional-self-assessment.md)
 
 [Download the Word document](CS_499_Tyler_Hubbell_Professional_Self_Assessment.docx)
 
