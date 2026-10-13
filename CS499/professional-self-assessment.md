@@ -1,8 +1,3 @@
----
-layout: default
-title: Professional Self-Assessment
----
-
 # Professional Self-Assessment
 
 **Tyler Hubbell**
